@@ -1,19 +1,56 @@
 {
-  "name": "inline-keyboard-markup-bot",
+  "name": "telegram-inline-keyboardist-bot",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
+    "build": "vite build",
+    "db:migrations:apply": "wrangler d1 migrations apply D1 --remote",
+    "deploy": "npm run db:migrations:apply && wrangler deploy",
+    "dev": "vite build && wrangler dev",
+    "dev:app": "vite",
+    "preview": "vite preview",
     "start": "wrangler dev",
-    "test": "vitest",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit && tsc -p app/tsconfig.json --noEmit",
     "cf-typegen": "wrangler types"
   },
+  "cloudflare": {
+    "bindings": {
+      "D1": {
+        "description": "存储消息快照、Inline Keyboard 和已发送的 Inline Message ID。Cloudflare 会自动创建并绑定 D1 数据库；可以修改默认资源名称。"
+      },
+      "API_ROOT": {
+        "description": "Telegram Bot API 根地址。除非使用自建 Bot API Server，否则保留默认值 `https://api.telegram.org`。"
+      },
+      "BOT_TOKEN": {
+        "description": "从 Telegram [@BotFather](https://t.me/BotFather) 获取的 Bot Token，例如 `123456789:AA...`。它会作为 Worker Secret 保存。"
+      },
+      "WEBHOOK_SECRET_TOKEN": {
+        "description": "Webhook 验证密钥，只能包含 `A-Z`、`a-z`、`0-9`、`_` 和 `-`，长度 1–256。建议用 `openssl rand -hex 32` 生成；部署后注册 Webhook 时还需要提供同一个值。"
+      }
+    }
+  },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.12.4",
     "@types/node": "^26.2.0",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^5.1.4",
+    "drizzle-kit": "^1.0.0-rc.4",
     "typescript": "^5.5.2",
-    "vitest": "~3.2.0",
-    "wrangler": "^4.122.0"
+    "vite": "^7.3.1",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.124.0"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@telegram-apps/telegram-ui": "^2.1.13",
+    "drizzle-orm": "^1.0.0-rc.4",
+    "lucide-react": "^1.31.0",
+    "nanoid": "^6.0.1",
+    "node-telegram-bot-api": "^2.0.0-alpha.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

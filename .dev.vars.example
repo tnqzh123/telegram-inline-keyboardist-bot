@@ -1,0 +1,5 @@
+# 从 @BotFather 获取。Deploy to Cloudflare 会把它保存为 Worker Secret。
+BOT_TOKEN=
+
+# 运行 `openssl rand -hex 32` 生成；注册 Webhook 时必须使用同一个值。
+WEBHOOK_SECRET_TOKEN=

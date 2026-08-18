@@ -1,0 +1,252 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "id": "4fd157dd-ff0e-4db2-b497-747274acc268",
+  "prevIds": [
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "ddl": [
+    {
+      "name": "inline_messages",
+      "entityType": "tables"
+    },
+    {
+      "name": "messages",
+      "entityType": "tables"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "inline_messages"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "share_id",
+      "entityType": "columns",
+      "table": "inline_messages"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "inline_message_id",
+      "entityType": "columns",
+      "table": "inline_messages"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "table": "inline_messages"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "messages"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "share_id",
+      "entityType": "columns",
+      "table": "messages"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "chat_id",
+      "entityType": "columns",
+      "table": "messages"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "source_message_id",
+      "entityType": "columns",
+      "table": "messages"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "copied_message_id",
+      "entityType": "columns",
+      "table": "messages"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "control_message_id",
+      "entityType": "columns",
+      "table": "messages"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "message_snapshot",
+      "entityType": "columns",
+      "table": "messages"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "inline_keyboard",
+      "entityType": "columns",
+      "table": "messages"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "table": "messages"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "table": "messages"
+    },
+    {
+      "columns": [
+        "share_id"
+      ],
+      "tableTo": "messages",
+      "columnsTo": [
+        "share_id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_inline_messages_share_id_messages_share_id_fk",
+      "entityType": "fks",
+      "table": "inline_messages"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "inline_messages_pk",
+      "table": "inline_messages",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "messages_pk",
+      "table": "messages",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        {
+          "value": "inline_message_id",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "inline_messages_inline_message_id_unique",
+      "entityType": "indexes",
+      "table": "inline_messages"
+    },
+    {
+      "columns": [
+        {
+          "value": "share_id",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "inline_messages_share_id_idx",
+      "entityType": "indexes",
+      "table": "inline_messages"
+    },
+    {
+      "columns": [
+        {
+          "value": "share_id",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "messages_share_id_unique",
+      "entityType": "indexes",
+      "table": "messages"
+    },
+    {
+      "columns": [
+        {
+          "value": "chat_id",
+          "isExpression": false
+        },
+        {
+          "value": "source_message_id",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "messages_chat_source_message_unique",
+      "entityType": "indexes",
+      "table": "messages"
+    }
+  ],
+  "renames": []
+}
